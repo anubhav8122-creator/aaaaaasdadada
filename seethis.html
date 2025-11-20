@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Magical Birthday Journey for Ridhi</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Smooth Scroll Effect */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* FONT IMPORTS */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Great+Vibes&family=Oswald:wght@200..700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a0a38, #300c5c, #1a0a38); /* Gradient Background (12) */
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite; /* Live gradient animation (12) */
+            transition: background-color 0.5s ease;
+            overflow-x: hidden; /* Hide horizontal overflow */
+            min-height: 100vh;
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="gold" d="M12 2l3.09 6.35 6.91.75-5 4.87 1.18 6.88-6.18-3.25-6.18 3.25 1.18-6.88-5-4.87 6.91-.75z"/></svg>') 15 15, auto; /* Glitter Cursor (13) */
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .font-beautiful {
+            font-family: 'Great Vibes', cursive;
+        }
+        
+        .font-strong-message {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 500; 
+        }
+        
+        /* Neon Glow Text Style (9) */
+        .neon-glow {
+            color: #fce7f3; /* Lightest Pink */
+            text-shadow: 
+                0 0 7px #f472b6, 
+                0 0 10px #f472b6, 
+                0 0 21px #ec4899, 
+                0 0 42px #e879f9, 
+                0 0 82px #d946ef;
+        }
+
+        /* High-contrast Card Style (Love Letter Box 11) */
+        .sharp-card {
+            background-color: rgba(25, 10, 50, 0.85);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            animation: card-glow 5s infinite alternate ease-in-out; /* Existing glow */
+            backdrop-filter: blur(10px); /* Glass effect */
+            
+            /* Setup for decorative border */
+            position: relative;
+            padding: 3rem; /* Increase padding for corner elements */
+        }
+
+        /* Card decorations (existing) */
+        .sharp-card::before {
+            content: '🌿'; position: absolute; top: 5px; left: 5px; font-size: 1.8rem; text-shadow: 0 0 5px #a78bfa; z-index: 10; animation: corner-float 4s ease-in-out infinite alternate;
+        }
+        .sharp-card::after {
+            content: '🌿'; position: absolute; bottom: 5px; right: 5px; font-size: 1.8rem; text-shadow: 0 0 5px #fcd34d; z-index: 10; animation: corner-float 4s ease-in-out infinite alternate reverse;
+        }
+        @keyframes corner-float {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            100% { transform: translate(5px, 5px) rotate(10deg) scale(1.05); }
+        }
+        @keyframes card-glow {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 15px rgba(236, 72, 153, 0.4); }
+            50% { border-color: #f472b6; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 25px #f472b6; }
+        }
+        
+        /* Fade-in Animation (5) */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in forwards; 
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .pop-button {
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 0 0 #9333ea;
+        }
+        .pop-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 0 #9333ea;
+        }
+
+        /* Ribbon Divider (10) */
+        .ribbon-deco {
+            color: #f9a8d4; /* Pink */
+            text-shadow: 0 0 5px #f472b6;
+            margin: 0 10px;
+            font-size: 2.25rem; /* Equivalent to Tailwind text-4xl */
+        }
+        
+        /* --- RIBBON CUT SPECIFIC STYLES --- */
+        .ribbon-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 20;
+            user-select: none;
+            transition: transform 0.2s ease;
+        }
+        .ribbon-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .ribbon-half {
+            transform: translateX(0);
+            transition: transform 1.0s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 1.0s; 
+            filter: drop-shadow(0 0 5px #f97316); 
+            opacity: 1; 
+        }
+
+        .ribbon-left.cut {
+            transform: translateX(-150px) rotate(-30deg); 
+            opacity: 0;
+        }
+
+        .ribbon-right.cut {
+            transform: translateX(150px) rotate(30deg); 
+            opacity: 0;
+        }
+
+        .scissors {
+            position: absolute;
+            font-size: 6rem; 
+            color: #fcd34d; 
+            z-index: 30;
+            animation: scissors-bob 2s infinite alternate ease-in-out;
+            pointer-events: none; 
+        }
+
+        @keyframes scissors-bob {
+            0% { transform: translateY(0) rotate(-10deg); }
+            100% { transform: translateY(-10px) rotate(10deg); }
+        }
+        
+        @keyframes scissors-snap {
+            0% { transform: translateY(0) rotate(-10deg) scale(1); }
+            50% { transform: translateY(-5px) rotate(0deg) scale(1.1); } 
+            100% { transform: translateY(0) rotate(-10deg) scale(1); }
+        }
+
+        .scissors.snapped {
+            animation: scissors-snap 0.3s ease-out forwards; 
+        }
+
+        /* Floating decorations and effects (existing) */
+        .floating-deco {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));
+        }
+
+        @keyframes fall-down {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(720deg) translateX(var(--drift-x)); opacity: 0; }
+        }
+
+        @keyframes float-up-deco {
+            0% { transform: translateY(110vh) rotate(0deg) translateX(0); opacity: 0.8; }
+            100% { transform: translateY(-10vh) rotate(720deg) translateX(var(--drift-x)) scale(1); opacity: 0; } 
+        }
+        
+        .sparkle {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 2s infinite ease-out;
+            z-index: 0;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.8; transform: scale(1); }
+        }
+
+        /* Typewriter Cursor for Stage 6 */
+        .typewriter-cursor::after {
+            content: "|";
+            display: inline-block;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { color: transparent; }
+            50% { color: #fcd34d; }
+        }
+
+        /* Firework Styles */
+        .firework {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Confetti Styles */
+        .confetti-piece {
+            position: absolute;
+            opacity: 0;
+            animation-timing-function: cubic-bezier(0.1, 1, 0.4, 1);
+            z-index: 1000;
+        }
+        @keyframes fall {
+            0% { opacity: 1; transform: translateY(-10vh) rotateZ(0deg) translateX(0); }
+            100% { opacity: 0; transform: translateY(110vh) rotateZ(1080deg) translateX(var(--fall-x)); }
+        }
+        
+        /* Heart Trail Styles */
+        .heart-trail {
+            position: fixed;
+            font-size: 1.5rem;
+            pointer-events: none;
+            opacity: 1;
+            transform: translate(-50%, -50%);
+            animation: heart-fade 1s ease-out forwards;
+            z-index: 999;
+        }
+
+        @keyframes heart-fade {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -100px) scale(0.5); opacity: 0; }
+        }
+
+        /* Butterfly Styles (for floating) */
+        .butterfly {
+            position: fixed;
+            left: -10vw; 
+            top: 50%;
+            animation: butterfly-flight 20s infinite linear;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        @keyframes butterfly-flight {
+            0% { left: -10vw; top: 50%; transform: rotate(0deg) translate(0, 0); }
+            25% { left: 40vw; top: 30%; transform: rotate(20deg) translate(50px, -50px); }
+            50% { left: 70vw; top: 60%; transform: rotate(-10deg) translate(0, 0); }
+            75% { left: 10vw; top: 80%; transform: rotate(30deg) translate(-50px, 50px); }
+            100% { left: 110vw; top: 50%; transform: rotate(0deg) translate(0, 0); }
+        }
+
+        /* Interactive Balloon Animation */
+        @keyframes interactive-float {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-300px) scale(0.8); }
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen relative">
+    
+    <!-- Containers for visual effects -->
+    <div id="balloon-container"></div>
+    <div id="sparkle-container"></div>
+    <div id="confetti-container"></div>
+    <div id="deco-container"></div>
+    <div id="butterfly-container"></div>
+    <div id="fireworks-container"></div>
+
+    <!-- Main Container --><div id="main-container" class="relative z-10 flex items-center justify-center min-h-screen p-4">
+
+        <!-- Stage 1: THE RIBBON CUT INTRO -->
+        <div id="stage-1" class="w-full max-w-2xl p-8 md:p-12 rounded-lg text-center sharp-card fade-in">
+            <h1 class="text-7xl md:text-8xl mb-4 text-pink-300 font-beautiful leading-tight neon-glow">
+                A Grand Opening!
+            </h1>
+            
+            <p class="text-2xl font-extrabold text-yellow-200 mb-8 tracking-wide font-beautiful">
+                Cut the Ribbon to Begin Your Magical Birthday Journey!
+            </p>
+            
+            <!-- Ribbon Cutting Area -->
+            <div id="ribbon-container" class="ribbon-container h-40 flex flex-col justify-center items-center" onclick="cutRibbon()">
+                
+                <!-- Scissors icon positioned over the center, added ID -->
+                <div id="scissors-icon" class="scissors">✂️</div>
+                
+                <div class="flex">
+                    <!-- Ribbon Left Half -->
+                    <span id="ribbon-left" class="ribbon-half text-6xl md:text-8xl">
+                        🎀
+                    </span>
+                    <!-- Ribbon Right Half -->
+                    <span id="ribbon-right" class="ribbon-half text-6xl md:text-8xl">
+                        🎀
+                    </span>
+                </div>
+                
+                <p class="mt-4 text-lg text-gray-300 italic">Click/Tap the ribbon to cut!</p>
+            </div>
+            
+            <div id="ribbon-message" class="mt-6 text-xl text-fuchsia-400 font-semibold hidden">
+                Success! Preparing the surprises...
+            </div>
+        </div>
+
+        <!-- Stage 2: The Best Bacha Ever! -->
+        <div id="stage-2" class="hidden w-full max-w-xl p-8 md:p-12 rounded-lg text-center sharp-card">
+            <h2 class="text-6xl mb-6 text-pink-300 font-beautiful neon-glow">The Best Bacha Ever!</h2>
+            <p class="text-2xl font-bold text-yellow-200 mb-6 flex justify-center items-center font-beautiful">
+                 <span class="ribbon-deco">🥳</span> I LOVE YOU SO MUCH BABY! <span class="ribbon-deco">🎉</span>
+            </p>
+            <p class="text-xl text-white mb-8 font-light leading-relaxed">
+                You deserve everything. I have surprises for your birthday, baby. You are the best I ever had, and I always wait for you.
+            </p>
+            <button onclick="nextStage(3)" class="pop-button mt-4 px-8 py-3 bg-pink-600 hover:bg-pink-700 text-white text-lg font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
+                BACHA THIS IS FOR YOU KEEP GOING
+            </button>
+        </div>
+        
+        <!-- Stage 3: A Gift of Time & Love -->
+        <div id="stage-3" class="hidden w-full max-w-xl p-8 md:p-12 rounded-lg text-center sharp-card">
+            <h2 class="text-6xl mb-6 text-pink-300 font-beautiful neon-glow">A Gift of Time & Love 🎀</h2>
+            <p class="text-2xl font-bold text-yellow-200 mb-6 font-beautiful">
+                I made this website for you, Bacha!
+            </p>
+            <p class="text-xl text-gray-200 mb-8 font-semibold leading-relaxed">
+                It took time, and it's my first time! Please be with me. This is going to be the best birthday of your life, my Cutie Ridhi Bacha!
+            </p>
+            <p class="text-3xl text-purple-400 mb-8 font-extrabold font-beautiful">
+                I LOVE YOU SO MUCHHHHHHHHHHHH 💋💋💋💕
+            </p>
+            <button onclick="nextStage(4)" class="pop-button mt-4 px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white text-lg font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
+                ALMOST THERE MERA PYAAR💋💕
+            </button>
+        </div>
+
+        <!-- Stage 4: Just the Best Bacha! -->
+        <div id="stage-4" class="hidden w-full max-w-xl p-8 md:p-12 rounded-lg text-center sharp-card">
+            <h2 class="text-6xl mb-6 text-pink-300 font-beautiful neon-glow">Just the Best Bacha!</h2>
+            <p class="text-xl text-gray-200 mb-6 font-light">
+                Every day with you is a gift. You deserve all the happiness in the world.
+            </p>
+            <div class="bg-white/5 p-6 rounded-md mb-8 backdrop-filter backdrop-blur-md">
+                 <p class="text-4xl text-white mb-3 font-black tracking-tight font-beautiful">
+                    OMG HIII BACHA LOVE YOU SO MUCH!
+                </p>
+                <p class="text-2xl text-yellow-200 font-semibold flex justify-center items-center font-beautiful">
+                    BAZAA BABY BACHA CUTE <span class="ribbon-deco">🎂</span>
+                </p>
+            </div>
+            <button onclick="nextStage(5)" class="pop-button mt-4 px-8 py-3 bg-pink-600 hover:bg-pink-700 text-white text-lg font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
+                THIS IS FOR YOU MY LOVE 💋💕
+            </button>
+        </div>
+
+        <!-- Stage 5: Final Confirmation -->
+        <div id="stage-5" class="hidden w-full max-w-xl p-8 md:p-12 rounded-lg text-center sharp-card">
+            <h2 class="text-6xl mb-6 text-purple-400 font-beautiful neon-glow">Final Confirmation</h2>
+            <p class="text-xl text-gray-200 mb-6 font-light">
+                Tap below to receive the final, heartfelt birthday message:
+            </p>
+            <div class="mb-8 p-6 bg-white/5 rounded-md backdrop-filter backdrop-blur-md">
+                <p class="text-3xl font-extrabold text-pink-300 text-center leading-tight font-beautiful">
+                    BAZAA BABY BACHA CUTE OMG HIII BACHA LOVE YOU SO MUCH <span class="ribbon-deco">🥳🎉</span>
+                </p>
+            </div>
+            <button onclick="nextStage(6)" class="pop-button mt-4 px-8 py-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-xl font-bold rounded-lg transition-all duration-300 transform hover:scale-105">
+                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA BACHAAAA LOVE YOUUUUUU
+            </button>
+        </div>
+        
+        <!-- Stage 6: The Final Message with Cake and Candles -->
+        <div id="stage-6" class="hidden w-full max-w-xl p-8 md:p-12 rounded-lg text-center sharp-card">
+            
+            <h2 id="typewriter-heading" class="text-7xl md:text-8xl font-beautiful text-yellow-300 relative z-10 pb-4 leading-tight neon-glow min-h-[100px] flex justify-center items-center">
+                <!-- Typewriter text will be inserted here -->
+            </h2>
+
+            <!-- Cake Decoration -->
+            <div class="cake-placeholder flex justify-center items-center h-20 mb-10 text-5xl">
+                🎂 Happy Birthday Cake 🎂
+            </div>
+            
+            <!-- The Expanded and Personalized Message (Love Letter Box 11) -->
+            <div class="text-left bg-white/5 p-6 md:p-8 rounded-lg space-y-6 backdrop-filter backdrop-blur-md font-strong-message mt-12">
+                
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-pink-500 rounded-full animate-spin-slow shadow-lg flex-shrink-0" style="animation-duration: 6s;">
+                        <span class="text-5xl">🎁</span>
+                    </div>
+                    
+                    <p class="text-xl text-pink-300 ml-4 flex-grow font-beautiful">
+                        Ridhi, my love, I love you so much Bacha! 
+                    </p>
+                </div>
+
+                <p class="text-lg text-gray-200 leading-relaxed">
+                    You are the best sunshine to me. You are the person that I look for after a rough day, and you are the only one I want. I am sorry if I am not that much grateful to you, but you are truly the best Ridhi.
+                </p>
+
+                <p class="text-lg text-gray-100 leading-relaxed">
+                    You celebrated my birthday like a festival, so I will make sure that I celebrate this like Diwali. I love you Bacha so much! I made this website only for you. It took soooo much time, Bacha, OMG!
+                </p>
+                
+                <p class="text-2xl font-extrabold text-yellow-300 leading-relaxed neon-glow font-beautiful">
+                    Happy Birthday Bacha, my love. This is going to be your best birthday, Bacha.
+                </p>
+
+                <div class="flex justify-center mt-6">
+                     <!-- Secret Message Reveal (18/19) -->
+                    <button id="secret-message-btn" class="pop-button px-6 py-3 bg-red-600 hover:bg-red-700 text-white text-lg font-bold rounded-lg flex items-center shadow-red-900 animate-pulse transition-all duration-500">
+                        <span class="text-3xl mr-2">💖</span> Open Secret Gift <span class="text-3xl ml-2">🎁</span>
+                    </button>
+                </div>
+                
+                <div id="secret-message" class="hidden mt-4 p-4 bg-red-900/50 border-l-4 border-red-400 rounded text-center text-xl font-bold text-red-100 italic">
+                    <p>I wish you all the happiness and prosperity in the world, Ridhi! You are the best thing that ever happened to me. Forever yours, my love. 💋</p>
+                </div>
+
+                <p class="text-lg text-gray-200">
+                    You are way too away from me, like so many kms away, but I will make sure this becomes the best birthday someone has ever celebrated for you. You are the best Ridhi. You deserve everything, meri jaan.
+                </p>
+            </div>
+
+            <div class="mt-8">
+                <p class="text-4xl font-bold text-purple-400 font-beautiful break-words">
+                    LOVE YOU SOO MUCH! 
+                    💕💕💕💕💕💋💋💋💋💋💋🎀💗😭💗💗💗💗💗😘😋😋😋😋😋😋😋😋😋😋😋💕💕💋💗💗🎀🎀🎀💗💗😘😘😘😋😋💋💋💕💕💕💕😍😍💌💌💌💌😍😍💌💌 
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const stages = [
+            document.getElementById('stage-1'), 
+            document.getElementById('stage-2'), 
+            document.getElementById('stage-3'),
+            document.getElementById('stage-4'), 
+            document.getElementById('stage-5'),
+            document.getElementById('stage-6'),
+        ];
+        
+        const mainContainer = document.getElementById('main-container');
+        
+        // --- RIBBON CUT LOGIC ---
+        let isRibbonCut = false;
+        function cutRibbon() {
+            if (isRibbonCut) return;
+
+            isRibbonCut = true;
+            
+            const scissors = document.getElementById('scissors-icon');
+            
+            scissors.classList.add('snapped');
+            scissors.style.animation = 'none'; 
+            
+            document.getElementById('ribbon-left').classList.add('cut');
+            document.getElementById('ribbon-right').classList.add('cut');
+            
+            document.getElementById('ribbon-container').style.pointerEvents = 'none'; 
+            document.getElementById('ribbon-message').classList.remove('hidden');
+
+            setTimeout(() => {
+                nextStage(2); 
+            }, 1000); 
+            
+            setTimeout(() => {
+                scissors.classList.remove('snapped');
+            }, 300);
+        }
+
+        // Function to handle the transition between stages
+        function nextStage(stageNumber) {
+            const currentActiveStage = stages.find(stage => !stage.classList.contains('hidden'));
+            if (currentActiveStage) {
+                 currentActiveStage.classList.remove('fade-in');
+                 currentActiveStage.classList.add('hidden');
+            }
+
+            const targetStage = stages[stageNumber - 1];
+            if (targetStage) {
+                targetStage.classList.remove('hidden');
+                targetStage.classList.add('fade-in'); 
+                
+                mainContainer.scrollIntoView({ behavior: 'smooth' });
+
+                if (stageNumber === 6) {
+                    document.body.style.overflow = 'auto';
+                    triggerConfetti(); 
+                    triggerFireworks(); 
+                    
+                    const finalMessage = "Happy Birthday, Ridhi";
+                    typeWriterEffect('typewriter-heading', finalMessage, 150);
+                }
+            }
+        }
+        
+        // --- ANIMATION / EFFECT FUNCTIONS ---
+
+        // Fireworks Setup 
+        function createFirework(x, y) {
+            const container = document.getElementById('fireworks-container');
+            const colors = ['#ff66b2', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6'];
+
+            for (let i = 0; i < 30; i++) {
+                const firework = document.createElement('div');
+                firework.classList.add('firework');
+                
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = Math.random() * 80 + 50; 
+                
+                const endX = x + distance * Math.cos(angle);
+                const endY = y + distance * Math.sin(angle);
+
+                firework.style.left = `${x}px`;
+                firework.style.top = `${y}px`;
+                firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Dynamic animation creation (for safety in single-file compilation)
+                const styleSheet = document.styleSheets[0];
+                const animName = `explode-${Date.now()}-${i}`;
+                
+                if(styleSheet) { 
+                    try {
+                        styleSheet.insertRule(`
+                            @keyframes ${animName} {
+                                0% { opacity: 1; transform: translate(0, 0) scale(0.5); }
+                                100% { opacity: 0; transform: translate(${endX - x}px, ${endY - y}px) scale(0.1); }
+                            }
+                        `, styleSheet.cssRules.length);
+                        firework.style.animation = `${animName} 1s ease-out forwards`;
+                        firework.style.animationDelay = `${Math.random() * 0.3}s`;
+                    } catch (e) {
+                        // Fallback if rule insertion fails
+                        firework.style.opacity = '0';
+                    }
+                }
+
+                container.appendChild(firework);
+                setTimeout(() => firework.remove(), 1500);
+            }
+        }
+
+        function triggerFireworks() {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            
+            // Generate multiple fireworks for a bigger celebration
+            createFirework(w * 0.2, h * 0.2);
+            createFirework(w * 0.5, h * 0.1);
+            createFirework(w * 0.8, h * 0.3);
+            createFirework(w * 0.3, h * 0.8);
+            createFirework(w * 0.7, h * 0.7);
+        }
+
+        // Confetti Function 
+        function triggerConfetti(count = 100) {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#f9a8d4', '#a78bfa', '#67e8f9', '#fcd34d', '#c084fc', '#f472b6'];
+
+            for (let i = 0; i < count; i++) {
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                
+                const startX = Math.random() * window.innerWidth;
+                const fallX = (Math.random() - 0.5) * 500; 
+
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.width = `${4 + Math.random() * 6}px`; 
+                piece.style.height = `${8 + Math.random() * 8}px`; 
+                piece.style.left = `${startX}px`;
+                
+                const duration = 2.5 + Math.random() * 2;
+                const delay = Math.random() * 0.5;
+
+                const styleSheet = document.styleSheets[0];
+                
+                if(styleSheet) {
+                    // Check for existing rules and insert if missing (safer for single-file)
+                    let rulesExist = false;
+                    for (let j = 0; j < styleSheet.cssRules.length; j++) {
+                        if (styleSheet.cssRules[j].type === CSSRule.KEYFRAMES_RULE && styleSheet.cssRules[j].name === 'fall') {
+                            rulesExist = true;
+                            break;
+                        }
+                    }
+                    if (!rulesExist) {
+                        try {
+                            styleSheet.insertRule(`
+                                @keyframes fall {
+                                    0% { opacity: 1; transform: translateY(-10vh) rotateZ(0deg) translateX(0); }
+                                    100% { opacity: 0; transform: translateY(110vh) rotateZ(1080deg) translateX(var(--fall-x)); }
+                                }
+                            `, styleSheet.cssRules.length);
+                        } catch (e) { console.error("Could not insert confetti rules:", e); }
+                    }
+                }
+                
+                piece.style.animation = `fall ${duration}s ease-in-out ${delay}s forwards`;
+                piece.style.setProperty('--fall-x', `${fallX}px`);
+
+                container.appendChild(piece);
+            }
+
+            setTimeout(() => { container.innerHTML = ''; }, 5000);
+        }
+        
+        // Sparkle Generation 
+        function createSparkle() {
+            const sparkleContainer = document.getElementById('sparkle-container');
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            
+            const size = 3 + Math.random() * 2; 
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.left = `${Math.random() * 100}vw`;
+            sparkle.style.top = `${Math.random() * 100}vh`;
+            sparkle.style.animationDuration = `${1.5 + Math.random() * 1}s`;
+            sparkle.style.animationDelay = `-${Math.random() * 1.5}s`;
+
+            sparkleContainer.appendChild(sparkle);
+
+            sparkle.addEventListener('animationend', () => {
+                sparkle.remove();
+            });
+        }
+        
+        // Falling Flowers 
+        const fallingDecos = ['🌸', '🌷', '🌺', '🌼'];
+        function createFallingDecos() {
+            const container = document.getElementById('deco-container');
+            const deco = document.createElement('div');
+            deco.classList.add('floating-deco');
+            
+            const size = 1.7 + Math.random() * 0.2; 
+            deco.style.fontSize = `${size}rem`; 
+
+            deco.textContent = fallingDecos[Math.floor(Math.random() * fallingDecos.length)];
+            deco.style.left = `${Math.random() * 100}vw`;
+            
+            const duration = `${8 + Math.random() * 7}s`;
+            const delay = `-${Math.random() * 15}s`;
+            const driftX = `${(Math.random() - 0.5) * 200}px`;
+
+            deco.style.setProperty('--drift-x', driftX);
+            deco.style.animation = `fall-down ${duration} linear ${delay} forwards`; 
+
+            deco.addEventListener('animationend', () => deco.remove(), { once: true });
+
+            container.appendChild(deco);
+        }
+        
+        // Floating Hearts / Roses 
+        const risingDecos = ['💖', '🌹', '💕', '❤️'];
+        function createRisingDecos() {
+            const container = document.getElementById('deco-container');
+            const deco = document.createElement('div');
+            deco.classList.add('floating-deco'); 
+            
+            const size = 1.7 + Math.random() * 0.2; 
+            deco.style.fontSize = `${size}rem`; 
+            
+            deco.textContent = risingDecos[Math.floor(Math.random() * risingDecos.length)];
+            deco.style.left = `${Math.random() * 100}vw`;
+            
+            const duration = `${12 + Math.random() * 8}s`;
+            const driftX = `${(Math.random() - 0.5) * 300}px`;
+
+            deco.style.setProperty('--drift-x', driftX);
+            deco.style.animation = `float-up-deco ${duration} linear forwards`;
+            
+            deco.addEventListener('animationend', () => deco.remove(), { once: true });
+            
+            container.appendChild(deco);
+        }
+        
+        // Function to spawn balloons on click/touch 
+        function createInteractiveBalloon(e) {
+            if (e.target.closest('#main-container')) {
+                return;
+            }
+            
+            const container = document.getElementById('balloon-container');
+            const balloon = document.createElement('div');
+            balloon.classList.add('floating-deco');
+            balloon.textContent = '🎈';
+
+            let x, y;
+            if (e.type.startsWith('touch')) {
+                x = e.touches[0].clientX;
+                y = e.touches[0].clientY;
+            } else {
+                x = e.clientX;
+                y = e.clientY;
+            }
+
+            balloon.style.left = `${x - 10}px`;
+            balloon.style.top = `${y - 10}px`;
+            
+            const size = 2.4 + Math.random() * 0.2; 
+            balloon.style.fontSize = `${size}rem`; 
+
+            const floatAnimDuration = `${3 + Math.random() * 2}s`; 
+
+            balloon.style.animation = `interactive-float ${floatAnimDuration} ease-out forwards`;
+            
+            container.appendChild(balloon);
+
+            setTimeout(() => balloon.remove(), parseFloat(floatAnimDuration) * 1000);
+        }
+
+
+        // Butterfly Animation 
+        const butterflyEmojis = ['🦋', '💜', '💙', '🧡', '💖'];
+        function createButterfly() {
+            const container = document.getElementById('butterfly-container');
+            const butterfly = document.createElement('div');
+            butterfly.classList.add('butterfly');
+            
+            butterfly.style.fontSize = `2.0rem`; 
+
+            const emoji = butterflyEmojis[Math.floor(Math.random() * butterflyEmojis.length)];
+            butterfly.textContent = emoji;
+
+            const delay = `-${Math.random() * 15}s`;
+            butterfly.style.animationDelay = delay;
+            
+            container.appendChild(butterfly);
+        }
+
+        // Typewriter Effect 
+        function typeWriterEffect(elementId, text, speed = 100) {
+            const targetElement = document.getElementById(elementId);
+            targetElement.textContent = ''; 
+            targetElement.classList.add('typewriter-cursor');
+            
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    targetElement.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    targetElement.classList.remove('typewriter-cursor');
+                }
+            }
+            type();
+        }
+        
+        // Secret Message Reveal 
+        function toggleSecretMessage() {
+            const msg = document.getElementById('secret-message');
+            const btn = document.getElementById('secret-message-btn');
+            if (msg.classList.contains('hidden')) {
+                msg.classList.remove('hidden');
+                btn.textContent = 'Close Message ❌';
+                btn.classList.remove('animate-pulse');
+            } else {
+                msg.classList.add('hidden');
+                btn.textContent = '💖 Open Secret Gift 🎁';
+                btn.classList.add('animate-pulse');
+            }
+        }
+        
+        // Heart Trail function 
+        function createHeartTrail(e) {
+            let x, y;
+            if (e.type.startsWith('touch')) {
+                x = e.touches[0].clientX;
+                y = e.touches[0].clientY;
+            } else {
+                x = e.clientX;
+                y = e.clientY;
+            }
+
+            const heart = document.createElement('div');
+            heart.classList.add('heart-trail');
+            heart.textContent = '💖'; 
+
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 1000); 
+        }
+
+
+        // Initial setup and Event Listener for Decorations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide all stages except the first one (the ribbon intro)
+            stages.forEach((stage, index) => {
+                if (index !== 0) {
+                    stage.classList.add('hidden');
+                }
+            });
+            if (stages[0]) {
+                stages[0].classList.remove('hidden');
+            }
+            document.getElementById('secret-message-btn')?.addEventListener('click', toggleSecretMessage);
+
+            // Start generating visual effects automatically
+            setInterval(createSparkle, 500); 
+            setInterval(createFallingDecos, 2000); 
+            setInterval(createRisingDecos, 2000); 
+            setInterval(createButterfly, 5000); 
+
+            // Heart Trail Cursor Follow 
+            document.body.addEventListener('mousemove', createHeartTrail);
+            document.body.addEventListener('touchmove', createHeartTrail);
+            
+            // Interactive Balloon Spawning
+            document.body.addEventListener('mousedown', createInteractiveBalloon);
+            document.body.addEventListener('touchstart', createInteractiveBalloon);
+        });
+    </script>
+</body>
+</html>
